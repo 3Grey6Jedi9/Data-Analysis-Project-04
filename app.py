@@ -24,11 +24,16 @@ Base = declarative_base()
 def add_csv():
     with open('/Users/danielmulatarancon/Desktop/Documents/HACKING TIME/*DATA ANALYSIS /Unit 04/Project 04/store-inventory/brands.csv') as csvfile:
         data = csv.reader(csvfile)
+        i = 0
         for row in data:
-            name = row[0]
-            new_brand = Brands(brand_name=name)
-            session.add(new_brand)
-        session.commit()
+            if i == 0:
+                i += 1
+                continue
+            else:
+                name = row[0]
+                new_brand = Brands(brand_name=name)
+                session.add(new_brand)
+            session.commit()
 
 
 
@@ -78,9 +83,9 @@ class Product(Base):
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     #app()
-    #add_csv()
+    add_csv()
 
     for p in session.query(Brands.brand_name):
-        print(p)
+        print(p.brand_name)
 
 
