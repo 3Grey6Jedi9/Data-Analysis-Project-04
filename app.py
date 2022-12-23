@@ -1,4 +1,4 @@
-from sqlalchemy import (create_engine, Column, Integer, String, ForeignKey)
+from sqlalchemy import (create_engine, Column, Integer, String, ForeignKey, Date)
 
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -24,9 +24,19 @@ class Brands(Base):
 class Product(Base):
     __tablename__ = "products"
 
+    product_id = Column(Integer, primary_key = True)
+    product_name = Column(String)
+    product_quantity = Column(Integer)
+    product_price = Column(Integer)
+    date_updated = Column(Date)
+    brand_id = Column(Integer, ForeignKey("brands.brand_id"))
+
+    def __repr__(self):
+        return f''''''
 
 
 
 if __name__ == '__main__':
-    pass
+    Base.metadata.create_all(engine)
+
 
