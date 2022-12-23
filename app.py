@@ -47,20 +47,23 @@ def clean_date(date):
 
 
 
+def add_invent_csv():
+    with open('/Users/danielmulatarancon/Desktop/Documents/HACKING TIME/*DATA ANALYSIS /Unit 04/Project 04/store-inventory/inventory.csv') as csvfile:
+        data = csv.reader(csvfile)
+        i = 0
+        for row in data:
+            if i == 0:
+                i += 1
+                continue
+            else:
+                pass
+            
 
 
 
 
 
 
-
-
-
-
-
-
-def inventory_cleaner():
-    pass
 
 
 def app():
@@ -104,6 +107,7 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     #app()
     #add_brand_csv()
+    #add_invent_csv()
 
     #for p in session.query(Brands.brand_name):
         #print(p.brand_name)
