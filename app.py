@@ -40,7 +40,11 @@ def clean_price(price):
 
 
 def clean_date(date):
-    pass
+    '''This function receives a string, such as 11/1/2019, and returns a date object'''
+    date_list = date.split("/")
+    date_clean = datetime.datetime(int(date_list[2]),int(date_list[1]), int(date_list[0]))
+    return date_clean
+
 
 
 
