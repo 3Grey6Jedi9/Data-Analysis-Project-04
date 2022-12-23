@@ -15,9 +15,18 @@ class Brands(Base):
     __tablename__ = "brands"
 
     brand_id = Column(Integer, primary_key = True)
-    brand_name = Column(String,)
+    brand_name = Column(String)
+
+    def __repr__(self):
+        return f'''Brand Name: {self.brand_name}'''
 
 
 class Product(Base):
     __tablename__ = "products"
+
+
+
+
+if __name__ == '__main__':
+    pass
 
