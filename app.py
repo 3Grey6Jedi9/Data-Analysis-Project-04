@@ -31,6 +31,23 @@ def add_brand_csv():
 
 
 
+def clean_price(price):
+    '''$3.19 becomes 319'''
+    numeric = price.split('$')[1]
+    nuf = float(numeric)
+    num = int(100*nuf)
+    return num
+
+
+
+
+
+
+
+
+
+
+
 
 def inventory_cleaner():
     pass
@@ -78,7 +95,7 @@ if __name__ == '__main__':
     #app()
     #add_brand_csv()
 
-    for p in session.query(Brands.brand_name):
-        print(p.brand_name)
+    #for p in session.query(Brands.brand_name):
+        #print(p.brand_name)
 
 
