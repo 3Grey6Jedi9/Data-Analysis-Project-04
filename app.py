@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from sqlalchemy.orm import sessionmaker, relationship
 
-import csv
+import csv, datetime
 
 
 engine = create_engine("sqlite:///inventory.db", echo=False)
@@ -37,6 +37,10 @@ def clean_price(price):
     nuf = float(numeric)
     num = int(100*nuf)
     return num
+
+
+def clean_date(date):
+    pass
 
 
 
