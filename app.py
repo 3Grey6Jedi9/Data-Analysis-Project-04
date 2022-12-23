@@ -32,7 +32,11 @@ class Product(Base):
     brand_id = Column(Integer, ForeignKey("brands.brand_id"))
 
     def __repr__(self):
-        return f''''''
+        return f'''Product Name: {self.product_name}\r
+        Product Quantity: {self.product_quantity}\r
+        Product Price: {self.product_price}\r
+        Last Updated: {self.date_updated}\r
+         '''
 
 
 
