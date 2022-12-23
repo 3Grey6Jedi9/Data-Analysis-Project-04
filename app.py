@@ -56,8 +56,15 @@ def add_invent_csv():
                 i += 1
                 continue
             else:
-                pass
-            
+                name = row[0]
+                quantity = int(row[2])
+                price = clean_price(row[1])
+                date = clean_date(row[3])
+                brand_id = session.query(Brands.brand_id)
+                new_product = Product() #To complete 
+                session.add(new_product)
+            session.commit()
+
 
 
 
