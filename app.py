@@ -12,16 +12,9 @@ Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()
 
-# brandcsv = with open (...file path...) as brandcsv
-
-# inventorycsv = with open (...) as inventorycsv
-
-# def add_csv(file):
-    # with open (file) as ...:
-    # .....
 
 
-def add_csv():
+def add_brand_csv():
     with open('/Users/danielmulatarancon/Desktop/Documents/HACKING TIME/*DATA ANALYSIS /Unit 04/Project 04/store-inventory/brands.csv') as csvfile:
         data = csv.reader(csvfile)
         i = 0
@@ -83,7 +76,7 @@ class Product(Base):
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     #app()
-    add_csv()
+    #add_brand_csv()
 
     for p in session.query(Brands.brand_name):
         print(p.brand_name)
