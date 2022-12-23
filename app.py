@@ -4,6 +4,8 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from sqlalchemy.orm import sessionmaker, relationship
 
+import csv
+
 
 engine = create_engine("sqlite:///inventory.db", echo=False)
 Session = sessionmaker(bind=engine)
