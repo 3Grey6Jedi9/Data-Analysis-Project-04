@@ -100,7 +100,6 @@ def app():
             if choice == 'v':
                 for product in session.query(Product):
                     print(f'{product.product_id}. {product.product_name}')
-                #Continue from here I must handle the error and display the product details knowing its ID
                 L = []
                 for p in session.query(Product.product_id):
                     L.append(p.product_id)
