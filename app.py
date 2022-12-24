@@ -82,7 +82,15 @@ def add_invent_csv():
 
 
 def app():
+    print('''\n\t\t\t\t*** MENU ***\r\n
+    Welcome, please select an option (letter) of the following list:\r\n
+    V - Details of a single product
+    N - Add a new product 
+    A - Analysis 
+    B - Make a BACKUP of the current Database 
+    ''')
     pass
+
 
 
 
@@ -121,19 +129,13 @@ class Product(Base):
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
-    #app()
+    app()
     #add_brand_csv()
     #add_invent_csv()
 
     #for p in session.query(Brands.brand_id):
         #print(p.brand_id)
-    for p in session.query(Product.brand_id):
-        print(p.brand_id)
+    #for p in session.query(Product.brand_id):
+        #print(p.brand_id)
 
 
-
-
-
-
-
-# the way of getting the brandid is by comparing brand's names first and get the associated id
