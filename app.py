@@ -89,6 +89,7 @@ def app():
     A - Analysis 
     B - Make a BACKUP of the current Database 
     ''')
+    choice = input()
     pass
 
 
