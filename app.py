@@ -42,8 +42,9 @@ def clean_price(price):
 def clean_date(date):
     '''This function receives a string, such as 11/1/2019, and returns a date object'''
     date_list = date.split("/")
-    date_clean = datetime.datetime(int(date_list[2]),int(date_list[1]), int(date_list[0]))
+    date_clean = datetime.datetime(int(date_list[2]),int(date_list[0]), int(date_list[1]))
     return date_clean
+
 
 
 
@@ -61,7 +62,7 @@ def add_invent_csv():
                 price = clean_price(row[1])
                 date = clean_date(row[3])
                 brand_id = session.query(Brands.brand_id)
-                new_product = Product() #To complete 
+                new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_id=brand_id)
                 session.add(new_product)
             session.commit()
 
@@ -114,9 +115,12 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     #app()
     #add_brand_csv()
-    #add_invent_csv()
+    add_invent_csv()
 
     #for p in session.query(Brands.brand_name):
         #print(p.brand_name)
+    for p in session.query(Product.product_name):
+        print(p.product_name)
+
 
 
