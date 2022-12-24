@@ -100,7 +100,8 @@ def app():
             if choice == 'v':
                 for product in session.query(Product):
                     print(f'{product.product_id}. {product.product_name}')
-                input('\nPlease enter the ID of the Product you want to know more about: ')
+                #Continue from here I must handle the error and display the product details knowing its ID
+                id = input('\nPlease enter the ID of the Product you want to know more about: ')
             elif choice == 'n':
                 pass
             elif choice == 'a':
