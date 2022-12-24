@@ -89,8 +89,16 @@ def app():
     A - Analysis 
     B - Make a BACKUP of the current Database 
     ''')
-    choice = input()
-    pass
+    while ValueError:
+        try:
+            choice = input().lower()
+            if choice not in ('v','n','a','b'):
+                raise ValueError('Please you must enter a valid option')
+        except ValueError as err:
+            print(f'{err}')
+        else:
+            pass
+
 
 
 
