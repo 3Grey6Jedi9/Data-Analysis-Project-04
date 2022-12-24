@@ -61,15 +61,11 @@ def add_invent_csv():
                 quantity = int(row[2])
                 price = clean_price(row[1])
                 date = clean_date(row[3])
-                brand_id = session.query(Brands.brand_id)
+                brand_name = row[4]
+                #get the brand id
                 new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_id=brand_id)
                 session.add(new_product)
             session.commit()
-
-
-print(session.query(Brands.brand_id))
-
-
 
 
 
@@ -105,6 +101,7 @@ class Product(Base):
     product_quantity = Column('Product Quantity', Integer)
     product_price = Column('Product Price',Integer)
     date_updated = Column('Last Updated',Date)
+    brand_name = Column('Brand', String)
     brand_id = Column(Integer, ForeignKey("brands.brand_id"))
 
     def __repr__(self):
@@ -119,13 +116,15 @@ class Product(Base):
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     #app()
-    #add_brand_csv()
-    #add_invent_csv()
+    add_brand_csv()
+    add_invent_csv()
 
-    #for p in session.query(Brands.brand_name):
-        #print(p.brand_name)
+    #for p in session.query(Brands.brand_id):
+        #print(p.brand_id)
     #for p in session.query(Product.brand_id):
         #print(p.brand_id)
+
+# Use the brand's names to get the proper brands' id
 
 
 
