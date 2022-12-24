@@ -101,7 +101,18 @@ def app():
                 for product in session.query(Product):
                     print(f'{product.product_id}. {product.product_name}')
                 #Continue from here I must handle the error and display the product details knowing its ID
-                id = input('\nPlease enter the ID of the Product you want to know more about: ')
+                L = []
+                for p in session.query(Product.product_id):
+                    L.append(p.product_id)
+                while ValueError:
+                    try:
+                        id = input('\nPlease enter the ID of the Product you want to know more about: ')
+                        if id not in L:
+                            raise ValueError('Please enter a valid ID')
+                    except ValueError as err:
+                        print(f'{err}')
+                    else:
+                        print('Well done')
             elif choice == 'n':
                 pass
             elif choice == 'a':
