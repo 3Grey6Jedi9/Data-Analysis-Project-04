@@ -67,6 +67,11 @@ def add_invent_csv():
             session.commit()
 
 
+print(session.query(Brands.brand_id))
+
+
+
+
 
 
 
@@ -115,12 +120,12 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     #app()
     #add_brand_csv()
-    add_invent_csv()
+    #add_invent_csv()
 
     #for p in session.query(Brands.brand_name):
         #print(p.brand_name)
-    for p in session.query(Product.product_name):
-        print(p.product_name)
+    #for p in session.query(Product.brand_id):
+        #print(p.brand_id)
 
 
 
