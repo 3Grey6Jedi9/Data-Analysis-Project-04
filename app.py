@@ -97,7 +97,19 @@ def app():
         except ValueError as err:
             print(f'{err}')
         else:
-            pass
+            if choice == 'v':
+                for product in session.query(Product):
+                    print(f'{product.product_id}. {product.product_name}')
+                input('\nPlease enter the ID of the Product you want to know more about: ')
+            elif choice == 'n':
+                pass
+            elif choice == 'a':
+                pass
+            elif choice == 'b':
+                pass
+            else:
+                pass
+
 
 
 
