@@ -89,12 +89,13 @@ def app():
         V - Details of a single product
         N - Add a new product 
         A - Analysis 
-        B - Make a BACKUP of the current Database 
+        B - Make a BACKUP of the current Database
+        Q - Quit 
         ''')
         while ValueError:
             try:
                 choice = input().lower()
-                if choice not in ('v','n','a','b'):
+                if choice not in ('v','n','a','b', 'q'):
                     raise ValueError('Please you must enter a valid option')
             except ValueError as err:
                 print(f'{err}')
@@ -149,6 +150,8 @@ def app():
                     pass
                 elif choice == 'b':
                     pass
+                elif choice == 'q':
+                    sys.exit()
                 else:
                     pass
             break
