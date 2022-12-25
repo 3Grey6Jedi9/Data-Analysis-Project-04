@@ -135,17 +135,17 @@ def app():
                     price = input('Now I need you to enter the price using this format --> $4.44: ')
                     date = datetime.datetime.now()
                     brand = input('Eventually, enter the Brand please: ')
-                    for b in session.query(Brands):
-                        if brand == b.brand_name:
-                            break
-                        elif brand != b.brand_name:
-                            continue
-                        else:
-                            new_brand = Brands(brand_name=brand)
+                    B = []
+                    for b in session.query(Brands.brand_name):
+                        B.append(b.brand_name)
+                    if brand in B:
+                        continue
+                    else:
+                        new_brand = Brands(brand_name=brand)
                     new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_name=brand)
+                    session.add(new_brand)
                     session.add(new_product)
                     session.commit()
-                    pass
                 elif choice == 'a':
                     pass
                 elif choice == 'b':
@@ -199,6 +199,9 @@ if __name__ == '__main__':
     app()
     #add_brand_csv()
     #add_invent_csv()
+
+
+
 
 
 
