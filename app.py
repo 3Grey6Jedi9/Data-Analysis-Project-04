@@ -103,7 +103,12 @@ def app():
                 L = []
                 for p in session.query(Product.product_id):
                     L.append(p.product_id)
-                id = input('\nPlease enter the ID of the Product you want to know more about: ')
+                id = int(input('\nPlease enter the ID of the Product you want to know more about: '))
+                for product in session.query(Product.product_id):
+                    if id == product.product_id:
+                        print('Product')
+                    else:
+                        continue
             elif choice == 'n':
                 pass
             elif choice == 'a':
