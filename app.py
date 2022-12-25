@@ -69,7 +69,7 @@ def add_invent_csv():
                         break
                     else:
                         continue
-                new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_id=brand_id)
+                new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_name= brand_name, brand_id=brand_id)
                 session.add(new_product)
             session.commit()
 
@@ -164,7 +164,7 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     app()
     #add_brand_csv()
-    #add_invent_csv() #add brands name
+    #add_invent_csv()
 
 
 
