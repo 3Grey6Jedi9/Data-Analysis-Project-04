@@ -106,11 +106,11 @@ def app():
                 id = int(input('\nPlease enter the ID of the Product you want to know more about: '))
                 for product in session.query(Product):
                     if id == product.product_id:
-                        print(f'''\nProduct's name: {product.product_name}\r
-                        Product's price: {product.product_price}\r
-                        Product Quantity: {product.product_quantity}\r
-                        Last Update: {product.date_updated}
-                        Brand: {product.brand_name}''')
+                        print(f'''\nProduct's name: {product.product_name}
+                        \rProduct's price: {product.product_price}\r
+                        \rProduct Quantity: {product.product_quantity}\r
+                        \rLast Update: {product.date_updated}
+                        \rBrand: {product.brand_name}''')
                     else:
                         continue
             elif choice == 'n':
@@ -164,21 +164,12 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     app()
     #add_brand_csv()
-    #add_invent_csv()
+    #add_invent_csv() #add brands name
 
 
-    #L = [1,2,3]
 
-    #a = tuple(L)
 
-    #c = set(a)
 
-    #print(c)
-
-    #if 2 not in c:
-        #print('ffff')
-    #else:
-        #print('aaa')
 
 
 
