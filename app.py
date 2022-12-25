@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from sqlalchemy.orm import sessionmaker, relationship
 
-import csv, datetime
+import csv, datetime, sys
 
 
 engine = create_engine("sqlite:///inventory.db", echo=False)
@@ -103,15 +103,7 @@ def app():
                 L = []
                 for p in session.query(Product.product_id):
                     L.append(p.product_id)
-                while ValueError:
-                    try:
-                        id = input('\nPlease enter the ID of the Product you want to know more about: ')
-                        if id not in L:
-                            raise ValueError('Please enter a valid ID')
-                    except ValueError as err:
-                        print(f'{err}')
-                    else:
-                        print('Well done')
+                id = input('\nPlease enter the ID of the Product you want to know more about: ')
             elif choice == 'n':
                 pass
             elif choice == 'a':
@@ -165,9 +157,21 @@ if __name__ == '__main__':
     #add_brand_csv()
     #add_invent_csv()
 
-    #for p in session.query(Brands.brand_id):
-        #print(p.brand_id)
-    #for p in session.query(Product.brand_id):
-        #print(p.brand_id)
+
+    #L = [1,2,3]
+
+    #a = tuple(L)
+
+    #c = set(a)
+
+    #print(c)
+
+    #if 2 not in c:
+        #print('ffff')
+    #else:
+        #print('aaa')
+
+
+
 
 
