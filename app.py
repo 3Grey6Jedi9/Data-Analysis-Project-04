@@ -129,7 +129,13 @@ def app():
                                 next = True
                         break
                 elif choice == 'n':
-                    
+                    name = input('Enter the name of the product you want to add: ')
+                    quantity = int(input('Enter the quantity: '))
+                    price = input('Now I need you to enter the price using this format --> $4.44: ')
+                    date = datetime.datetime.now()
+                    brand = input('Eventually, enter the Brand please: ')
+                    new_product = Product(product_name=name, product_quantity=quantity, product_price=price,  )
+
                     pass
                 elif choice == 'a':
                     pass
@@ -140,6 +146,10 @@ def app():
             break
 
 
+
+    #date_updated = Column('Last Updated',Date)
+    #brand_name = Column('Brand', String)
+    #brand_id = Column(Integer, ForeignKey("brands.brand_id"))
 
 
 
