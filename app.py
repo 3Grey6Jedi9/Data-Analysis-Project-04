@@ -105,21 +105,29 @@ def app():
                     L = []
                     for p in session.query(Product.product_id):
                         L.append(p.product_id)
-                    id = int(input('\nPlease enter the ID of the Product you want to know more about: '))
-                    for product in session.query(Product):
-                        if id == product.product_id:
-                            print(f'''\nProduct's name: {product.product_name}
-                            \rProduct's price: {product.product_price}\r
-                            \rProduct Quantity: {product.product_quantity}\r
-                            \rLast Update: {product.date_updated}
-                            \rBrand: {product.brand_name}''')
+                    while ValueError:
+                        try:
+                            id = int(input('\nPlease enter the ID of the Product you want to know more about: '))
+                            if id not in L:
+                                raise ValueError('Please you must select a valid ID')
+                            for product in session.query(Product):
+                                if id == product.product_id:
+                                    print(f'''\nProduct's name: {product.product_name}
+                                    \rProduct's price: {product.product_price}\r
+                                    \rProduct Quantity: {product.product_quantity}\r
+                                    \rLast Update: {product.date_updated}
+                                    \rBrand: {product.brand_name}''')
+                                else:
+                                    continue
+                        except ValueError as err:
+                            print(f'{err}')
                         else:
-                            continue
-                    next = input('Enter "q" if you want to quit or any other key to going back to the MENU: ')
-                    if next == 'q':
-                        sys.exit()
-                    else:
-                        next = True
+                            next = input('\nEnter "q" if you want to quit or any other key to going back to the MENU: ')
+                            if next == 'q':
+                                sys.exit()
+                            else:
+                                next = True
+                        break
                 elif choice == 'n':
                     pass
                 elif choice == 'a':
