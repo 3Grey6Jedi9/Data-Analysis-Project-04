@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from sqlalchemy.orm import sessionmaker, relationship
 
-import csv, datetime, sys
+import csv, datetime, sys, statistics
 
 
 engine = create_engine("sqlite:///inventory.db", echo=False)
@@ -142,12 +142,38 @@ def app():
                         continue
                     else:
                         new_brand = Brands(brand_name=brand)
-                    new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_name=brand)
+                    new_product = Product(product_name=name, product_quantity=quantity, product_price=clean_price(price), date_updated=date, brand_name=brand)
                     session.add(new_brand)
                     session.add(new_product)
                     session.commit()
                 elif choice == 'a':
-                    pass
+                    # THE MOST EXPENSIVE PRODUCTS
+                    P = []
+                    expensive = []
+                    for p in session.query(Product):
+                        P.append(p.product_price)
+                    highest_price = max(P)
+                    for p in session.query(Product):
+                        if highest_price == p.product_price:
+                            expensive.append(p.product_name)
+                    print(f'''\nThese are the most expensive products: ''')
+                    for e in expensive:
+                        print(f'{e}: ${highest_price/100}')
+                    # THE CHEAPEST PRODUCTS
+                    cheap = []
+                    lowest_price = min(P)
+                    for p in session.query(Product):
+                        if lowest_price == p.product_price:
+                            cheap.append(p.product_name)
+                    print(f'''\nThese are the cheapest products: ''')
+                    for e in cheap:
+                        print(f'{e}: ${lowest_price/100}')
+                    # THE MOST POPULAR BRAND
+                    all_brands = []
+                    for b in session.query(Product):
+                        all_brands.append(b.brand_name)
+                    popular = statistics.multimode(all_brands)
+                    print(f'''\nThe most popular brand is {popular[0]}''')
                 elif choice == 'b':
                     pass
                 elif choice == 'q':
@@ -196,13 +222,10 @@ class Product(Base):
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
-    #app()
+    app()
     #add_brand_csv()
     #add_invent_csv()
 
-
-    for b in session.query(Brands):
-        print(b.brand_name)
 
 
 
