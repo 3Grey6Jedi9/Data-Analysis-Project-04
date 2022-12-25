@@ -82,45 +82,53 @@ def add_invent_csv():
 
 
 def app():
-    print('''\n\t\t\t\t*** MENU ***\r\n
-    Welcome, please select an option (letter) of the following list:\r\n
-    V - Details of a single product
-    N - Add a new product 
-    A - Analysis 
-    B - Make a BACKUP of the current Database 
-    ''')
-    while ValueError:
-        try:
-            choice = input().lower()
-            if choice not in ('v','n','a','b'):
-                raise ValueError('Please you must enter a valid option')
-        except ValueError as err:
-            print(f'{err}')
-        else:
-            if choice == 'v':
-                for product in session.query(Product):
-                    print(f'{product.product_id}. {product.product_name}')
-                L = []
-                for p in session.query(Product.product_id):
-                    L.append(p.product_id)
-                id = int(input('\nPlease enter the ID of the Product you want to know more about: '))
-                for product in session.query(Product):
-                    if id == product.product_id:
-                        print(f'''\nProduct's name: {product.product_name}
-                        \rProduct's price: {product.product_price}\r
-                        \rProduct Quantity: {product.product_quantity}\r
-                        \rLast Update: {product.date_updated}
-                        \rBrand: {product.brand_name}''')
-                    else:
-                        continue
-            elif choice == 'n':
-                pass
-            elif choice == 'a':
-                pass
-            elif choice == 'b':
-                pass
+    next = True
+    while next:
+        print('''\n\t\t\t\t*** MENU ***\r\n
+        Welcome, please select an option (letter) of the following list:\r\n
+        V - Details of a single product
+        N - Add a new product 
+        A - Analysis 
+        B - Make a BACKUP of the current Database 
+        ''')
+        while ValueError:
+            try:
+                choice = input().lower()
+                if choice not in ('v','n','a','b'):
+                    raise ValueError('Please you must enter a valid option')
+            except ValueError as err:
+                print(f'{err}')
             else:
-                pass
+                if choice == 'v':
+                    for product in session.query(Product):
+                        print(f'{product.product_id}. {product.product_name}')
+                    L = []
+                    for p in session.query(Product.product_id):
+                        L.append(p.product_id)
+                    id = int(input('\nPlease enter the ID of the Product you want to know more about: '))
+                    for product in session.query(Product):
+                        if id == product.product_id:
+                            print(f'''\nProduct's name: {product.product_name}
+                            \rProduct's price: {product.product_price}\r
+                            \rProduct Quantity: {product.product_quantity}\r
+                            \rLast Update: {product.date_updated}
+                            \rBrand: {product.brand_name}''')
+                        else:
+                            continue
+                    next = input('Enter "q" if you want to quit or any other key to going back to the MENU: ')
+                    if next == 'q':
+                        sys.exit()
+                    else:
+                        next = True
+                elif choice == 'n':
+                    pass
+                elif choice == 'a':
+                    pass
+                elif choice == 'b':
+                    pass
+                else:
+                    pass
+            break
 
 
 
