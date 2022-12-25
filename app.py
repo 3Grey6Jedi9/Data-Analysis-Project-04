@@ -196,12 +196,13 @@ class Product(Base):
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
-    app()
+    #app()
     #add_brand_csv()
     #add_invent_csv()
 
 
-
+    for b in session.query(Brands):
+        print(b.brand_name)
 
 
 
