@@ -104,9 +104,13 @@ def app():
                 for p in session.query(Product.product_id):
                     L.append(p.product_id)
                 id = int(input('\nPlease enter the ID of the Product you want to know more about: '))
-                for product in session.query(Product.product_id):
+                for product in session.query(Product):
                     if id == product.product_id:
-                        print('Product')
+                        print(f'''\nProduct's name: {product.product_name}\r
+                        Product's price: {product.product_price}\r
+                        Product Quantity: {product.product_quantity}\r
+                        Last Update: {product.date_updated}
+                        Brand: {product.brand_name}''')
                     else:
                         continue
             elif choice == 'n':
