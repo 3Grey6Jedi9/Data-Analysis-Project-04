@@ -118,7 +118,22 @@ def app():
                                     \rProduct Quantity: {product.product_quantity}\r
                                     \rLast Update: {product.date_updated}
                                     \rBrand: {product.brand_name}''')
-                                    action = input('\nWould you like to modify[M] or delete[D] this product?: ')
+                                    action = input('\nWould you like to modify[M] or delete[D] this product?: ').lower()
+                                    if action == 'm':
+                                        quantity = int(input('Enter the new amount: '))
+                                        price = input('Now I need you to enter the new price using this format --> $4.44: ')
+                                        date = datetime.datetime.now()
+                                        brand = input('Eventually, enter the new Brand please: ')
+                                        product.product_quantity = quantity
+                                        product.product_price = price
+                                        product.date_updated = date
+                                        product.brand_name = brand
+                                    elif action == 'd':
+                                        sure = input('Are you sure you want to delete this product (enter "yes" to delete or press any other key to continue)? ').lower()
+                                        if sure == 'yes':
+                                            session.delete(product)
+                                        else:
+                                            break
                                 else:
                                     continue
                         except ValueError as err:
