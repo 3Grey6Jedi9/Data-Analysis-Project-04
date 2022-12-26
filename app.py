@@ -184,10 +184,10 @@ def app():
                     else:
                         new_brand = Brands(brand_name=brand)
                         session.add(new_brand)
-                    P = []
+                    pro = []
                     for p in session.query(Product.product_name):
-                        P.append(p.product_name)
-                    if name in P:
+                        pro.append(p.product_name)
+                    if name in pro:
                         for p in session.query(Product):
                             if p.product_name == name:
                                 p.product_name = name
@@ -294,6 +294,12 @@ if __name__ == '__main__':
     app()
     #add_brand_csv()
     #add_invent_csv()
+
+
+
+
+
+
 
 
 
