@@ -175,7 +175,18 @@ def app():
                     popular = statistics.multimode(all_brands)
                     print(f'''\nThe most popular brand is {popular[0]}''')
                 elif choice == 'b':
-                    pass
+                    with open('inventory_backup.csv', 'w') as csvfile:
+                        fieldnames = ['Name', 'Price','Quantity','Last Update', 'Brand']
+                        productwriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                        productwriter.writeheader()
+                        data = []
+                        for p in session.query(Product):
+                            data.append({'Name':p.product_name,
+                                         'Price':p.product_price,
+                                         'Quantity':p.product_quantity,
+                                         'Last Update':p.date_updated,
+                                         'Brand':p.brand_name})
+                        productwriter.writerows(data)
                 elif choice == 'q':
                     sys.exit()
                 else:
