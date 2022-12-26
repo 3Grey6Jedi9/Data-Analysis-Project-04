@@ -118,6 +118,7 @@ def app():
                                     \rProduct Quantity: {product.product_quantity}\r
                                     \rLast Update: {product.date_updated}
                                     \rBrand: {product.brand_name}''')
+                                    action = input('\nWould you like to modify[M] or delete[D] this product?: ')
                                 else:
                                     continue
                         except ValueError as err:
