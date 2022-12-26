@@ -109,7 +109,7 @@ def most_valuable():
 def app():
     next = True
     while next:
-        print('''\n\t\t\t\t*** MENU ***\r\n
+        print('''\n\t\t\t\t\033[1m*** MENU ***\033[0m\r\n
         Welcome, please select an option (letter) of the following list:\r\n
         V - Details of a single product
         N - Add a new product 
@@ -145,8 +145,25 @@ def app():
                                     \rBrand: {product.brand_name}''')
                                     action = input('\nWould you like to modify[M] or delete[D] this product?: ').lower()
                                     if action == 'm':
-                                        quantity = int(input('Enter the new amount: '))
-                                        price = input('Now I need you to enter the new price using this format --> $4.44: ')
+                                        T = True
+                                        while T:
+                                            try:
+                                                quantity = int(input('Enter the new amount: '))
+                                                if type(quantity) != int:
+                                                    raise TypeError('Please enter an Integer')
+                                            except:
+                                                print(f'Please you must enter an Integer')
+
+                                            else:
+                                                T = False
+                                        ep = True
+                                        while ep:
+                                            try:
+                                                price = int(input('Now I need you to enter the new price in cents of a dollar so $4.44 would be --> 444: '))
+                                            except:
+                                                print('Enter an Integer please')
+                                            else:
+                                                ep = False
                                         date = datetime.datetime.now()
                                         brand = input('Eventually, enter the new Brand please: ')
                                         product.product_quantity = quantity
@@ -169,11 +186,25 @@ def app():
                                 sys.exit()
                             else:
                                 next = True
-                        break
+                            break
                 elif choice == 'n':
                     name = input('Enter the name of the product you want to add: ')
-                    quantity = int(input('Enter the quantity: '))
-                    price = input('Now I need you to enter the price using this format --> $4.44: ')
+                    eq = True
+                    while eq:
+                        try:
+                            quantity = int(input('Enter the quantity: '))
+                        except:
+                            print('You must enter an Integer please')
+                        else:
+                            eq = False
+                    erp = True
+                    while erp:
+                        try:
+                            price = int(input('Now I need you to enter the price in cents of a dollar so $4.44 would be --> 444: '))
+                        except:
+                            print('You must enter an Integer please')
+                        else:
+                            erp = False
                     date = datetime.datetime.now()
                     brand = input('Eventually, enter the Brand please: ')
                     B = []
@@ -199,7 +230,7 @@ def app():
                             else:
                                 continue
                     else:
-                        new_product = Product(product_name=name, product_quantity=quantity, product_price=clean_price(price), date_updated=date, brand_name=brand)
+                        new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_name=brand)
                         session.add(new_product)
                     session.commit()
                 elif choice == 'a':
