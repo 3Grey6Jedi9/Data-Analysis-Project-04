@@ -75,6 +75,31 @@ def add_invent_csv():
 
 
 
+def most_valuable():
+    product_names = []
+    prices = []
+    amounts = []
+    value = []
+    for p in session.query(Product):
+        product_names.append(p.product_name)
+        prices.append(p.product_price)
+        amounts.append(p.product_quantity)
+        value.append(p.product_price * p.product_quantity)
+    most = max(value)
+    idx = ''
+    j = 0
+    for i in value:
+        if i == most:
+            idx = j
+        else:
+            j += 1
+            continue
+    s = sum(value)/100
+    print(f'''\nThe most valuable item in the inventory is {product_names[idx]} with a total value of ${value[idx/100]}
+    \rWhich means that this item represents a {((value[idx/100])/s)*100}% of the total value of the assets from the inventory''')
+
+
+
 
 
 
@@ -205,6 +230,8 @@ def app():
                         all_brands.append(b.brand_name)
                     popular = statistics.multimode(all_brands)
                     print(f'''\nThe most popular brand is {popular[0]}''')
+                    # THE MAIN ASSET
+                    most_valuable()
                 elif choice == 'b':
                     with open('inventory_backup.csv', 'w') as csvfile:
                         fieldnames = ['Name', 'Price','Quantity','Last Update', 'Brand']
@@ -267,6 +294,11 @@ if __name__ == '__main__':
     app()
     #add_brand_csv()
     #add_invent_csv()
+
+
+
+
+
 
 
 
