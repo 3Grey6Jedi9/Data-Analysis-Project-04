@@ -12,6 +12,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()
 
+# Open files and put them into the repo; Put the functions inside app() and try all
 
 
 def add_brand_csv():
@@ -107,6 +108,16 @@ def most_valuable():
 
 
 def app():
+    b_verify = []
+    p_verify = []
+    for p in session.query(Product):
+        p_verify.append(p.product_name)
+    for b in session.query(Brands):
+        b_verify.append(b.brand_name)
+    if len(b_verify) == 0:
+        add_brand_csv()
+    if len(p_verify) == 0:
+        add_invent_csv()
     next = True
     while next:
         print('''\n\t\t\t\t\033[1m*** MENU ***\033[0m\r\n
@@ -324,5 +335,3 @@ class Product(Base):
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     app()
-    #add_brand_csv()
-    #add_invent_csv()
