@@ -142,9 +142,24 @@ def app():
                         continue
                     else:
                         new_brand = Brands(brand_name=brand)
-                    new_product = Product(product_name=name, product_quantity=quantity, product_price=clean_price(price), date_updated=date, brand_name=brand)
-                    session.add(new_brand)
-                    session.add(new_product)
+                        session.add(new_brand)
+                    P = []
+                    for p in session.query(Product.product_name):
+                        P.append(p.product_name)
+                    if name in P:
+                        for p in session.query(Product):
+                            if p.product_name == name:
+                                p.product_name = name
+                                p.product_quantity = quantity
+                                p.product_price = price
+                                p.date_updated = date
+                                p.brand_name = brand
+                                break
+                            else:
+                                continue
+                    else:
+                        new_product = Product(product_name=name, product_quantity=quantity, product_price=clean_price(price), date_updated=date, brand_name=brand)
+                        session.add(new_product)
                     session.commit()
                 elif choice == 'a':
                     # THE MOST EXPENSIVE PRODUCTS
