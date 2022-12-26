@@ -95,8 +95,8 @@ def most_valuable():
             j += 1
             continue
     s = sum(value)/100
-    print(f'''\nThe most valuable item in the inventory is {product_names[idx]} with a total value of ${value[idx/100]}
-    \rWhich means that this item represents a {((value[idx/100])/s)*100}% of the total value of the assets from the inventory''')
+    print(f'''\nThe most valuable item in the inventory is {product_names[idx]} with a total value of ${value[idx]/100}
+    \rWhich means that this item represents a {((value[idx]/100)/s)*100}% of the total value of the assets of the inventory''')
 
 
 
@@ -294,25 +294,3 @@ if __name__ == '__main__':
     app()
     #add_brand_csv()
     #add_invent_csv()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
