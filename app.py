@@ -12,7 +12,6 @@ Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()
 
-# Open files and put them into the repo; Put the functions inside app() and try all
 
 
 def add_brand_csv():
@@ -37,11 +36,11 @@ def unclean_price(cents):
     fdollars = '$'+str(dollars)
     return fdollars
 
+
+
 def unclean_date(date):
     fdate = date.strftime("%m/%d/%Y")
     return fdate
-
-
 
 
 
@@ -52,6 +51,7 @@ def clean_price(price):
     nuf = float(numeric)
     num = int(100*nuf)
     return num
+
 
 
 def clean_date(date):
@@ -83,7 +83,7 @@ def add_invent_csv():
                         break
                     else:
                         continue
-                new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_name= brand_name, brand_id=brand_id)
+                new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_name=brand_name, brand_id=brand_id)
                 session.add(new_product)
             session.commit()
         # This will guarantee that there are not duplicates
