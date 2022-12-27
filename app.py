@@ -31,7 +31,7 @@ def add_brand_csv():
 
 
 
-# Bakcup of the brands
+
 # Store the data $4.44 and date /// when creating a backup
 
 
@@ -292,6 +292,14 @@ def app():
                                          'Quantity':p.product_quantity,
                                          'Last Update':p.date_updated,
                                          'Brand':p.brand_name})
+                        productwriter.writerows(data)
+                    with open('brands_backup.csv', 'w') as csvfile:
+                        fieldnames = ['Brand Name']
+                        productwriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                        productwriter.writeheader()
+                        data = []
+                        for p in session.query(Brands):
+                            data.append({'Brand Name':p.brand_name})
                         productwriter.writerows(data)
                 elif choice == 'q':
                     sys.exit()
