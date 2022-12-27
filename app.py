@@ -82,7 +82,7 @@ def add_invent_csv():
                         break
                     else:
                         continue
-                new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand=brand_name)
+                new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_id=brand_id)
                 session.add(new_product)
             session.commit()
         # This will guarantee that there are not duplicates
@@ -202,11 +202,24 @@ def app():
                                             else:
                                                 ep = False
                                         date = datetime.datetime.now()
-                                        brand = input('Eventually, enter the new Brand please: ')
+                                        brand_name = input('Eventually, enter the new Brand please: ')
+                                        b = []
+                                        for p in session.query(Brands):
+                                            b.append(p.brand_name)
+                                        if brand_name in b:
+                                            for p in session.query(Brands):
+                                                if p.brand_name == brand_name:
+                                                    brand_id = p.brand_id
+                                                    break
+                                        else:
+                                            new_brand = Brands(brand_name=brand_name)
+                                            session.add(new_brand)
+                                            session.commit()
+                                            brand_id = new_brand.brand_id
                                         product.product_quantity = quantity
                                         product.product_price = price
                                         product.date_updated = date
-                                        product.brand_name = brand
+                                        product.brand_id = brand_id
                                     elif action == 'd':
                                         sure = input('Are you sure you want to delete this product (enter "yes" to delete or press any other key to continue)? ').lower()
                                         if sure == 'yes':
@@ -248,10 +261,13 @@ def app():
                     for b in session.query(Brands.brand_name):
                         B.append(b.brand_name)
                     if brand in B:
+                        brand_id = B.index(brand) + 1
                         pass
                     else:
                         new_brand = Brands(brand_name=brand)
                         session.add(new_brand)
+                        session.commit()
+                        brand_id = new_brand.brand_id
                     pro = []
                     for p in session.query(Product.product_name):
                         pro.append(p.product_name)
@@ -262,12 +278,12 @@ def app():
                                 p.product_quantity = quantity
                                 p.product_price = price
                                 p.date_updated = date
-                                p.brand_name = brand
+                                p.brand_id = brand_id
                                 break
                             else:
                                 continue
                     else:
-                        new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_name=brand)
+                        new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_id=brand_id)
                         session.add(new_product)
                     session.commit()
                 elif choice == 'a':
@@ -295,9 +311,13 @@ def app():
                     # THE MOST POPULAR BRAND
                     all_brands = []
                     for b in session.query(Product):
-                        all_brands.append(b.brand_name)
+                        all_brands.append(b.brand_id)
                     popular = statistics.multimode(all_brands)
-                    print(f'''\nThe most popular brand is {popular[0]}''')
+                    for b in session.query(Brands):
+                        if b.brand_id == popular[0]:
+                            print(f'''\nThe most popular brand is {b.brand_name}''')
+                        else:
+                            continue
                     # THE MAIN ASSET
                     most_valuable()
                 elif choice == 'b':
@@ -311,7 +331,7 @@ def app():
                                          'product_price':unclean_price(p.product_price),
                                          'product_quantity':p.product_quantity,
                                          'date_updated':unclean_date(p.date_updated),
-                                         'brand_name':p.brand_name})
+                                         'brand_name':p.brand})
                         productwriter.writerows(data)
                     with open('brands_backup.csv', 'w') as csvfile:
                         fieldnames = ['brand_name']
@@ -344,7 +364,7 @@ class Brands(Base):
     brands_product = relationship("Product", back_populates="brand")
 
     def __repr__(self):
-        return f'''Brand Name: {self.brand_name}'''
+        return f'''{self.brand_name}'''
 
 
 class Product(Base):
@@ -375,9 +395,10 @@ if __name__ == '__main__':
 
 
 
-    # Use the relationship in a proper way
 
-    
+
+
+
 
 
 
