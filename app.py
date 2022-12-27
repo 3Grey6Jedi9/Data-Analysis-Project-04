@@ -235,7 +235,7 @@ def app():
                     for b in session.query(Brands.brand_name):
                         B.append(b.brand_name)
                     if brand in B:
-                        continue
+                        pass
                     else:
                         new_brand = Brands(brand_name=brand)
                         session.add(new_brand)
@@ -340,7 +340,7 @@ class Product(Base):
     product_quantity = Column('Product Quantity', Integer)
     product_price = Column('Product Price',Integer)
     date_updated = Column('Last Updated',Date)
-    brand_name = Column('Brand', String)
+    brand_name = Column('Brand', String) # Remove this since I must have a connection between the two tables
     brand_id = Column(Integer, ForeignKey("brands.brand_id"))
 
     def __repr__(self):
@@ -355,6 +355,12 @@ class Product(Base):
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     app()
+
+    # Remove the brand_name column (take a look to the documentation again)
+
+    # When the inventory csv is imported verify there are not duplicates
+
+    # The backups must be identical to the originals
 
 
 
