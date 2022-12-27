@@ -30,6 +30,15 @@ def add_brand_csv():
             session.commit()
 
 
+#with open('https://github.com/3Grey6Jedi9/Data-Analysis-Project-04/blob/9740623879ff1ec0424423c17ad0361027fd33ed/inventory_backup.csv') as csvfile:
+#play with that I need to share those 2 files
+# Bakcup of the brands
+# Store the data $4.44 and date /// when creating a backup
+
+# /Users/danielmulatarancon/Desktop/Documents/HACKING TIME/*DATA ANALYSIS /Unit 04/Project 04/store-inventory/inventory.csv
+
+
+
 
 
 def clean_price(price):
