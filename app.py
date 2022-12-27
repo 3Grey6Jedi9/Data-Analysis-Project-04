@@ -349,8 +349,7 @@ class Product(Base):
         Last Updated: {self.date_updated}\r
          '''
 
-#START EXECUTING THE add_brand_csv() & add_invent_csv() FUNCTIONS TO ADD CONTENT INTO THE DATABASE AND THEN DISABLE THOSE FUCNTIONS
-# AND ACTIVATE THE APP() FUNCION TO RUN THE APP
+
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
