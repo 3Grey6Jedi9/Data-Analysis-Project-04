@@ -76,14 +76,13 @@ def add_invent_csv():
                 price = clean_price(row[1])
                 date = clean_date(row[3])
                 brand_name = row[4]
-                brand_id = 0
                 for p in session.query(Brands):
                     if p.brand_name == brand_name:
                         brand_id = p.brand_id
                         break
                     else:
                         continue
-                new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_name=brand_name, brand_id=brand_id)
+                new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand=brand_name)
                 session.add(new_product)
             session.commit()
         # This will guarantee that there are not duplicates
@@ -180,7 +179,7 @@ def app():
                                     \rProduct's price: {product.product_price}\r
                                     \rProduct Quantity: {product.product_quantity}\r
                                     \rLast Update: {product.date_updated}
-                                    \rBrand: {product.brand_name}''')
+                                    \rBrand: {product.brand}''')
                                     action = input('\nWould you like to modify[M] or delete[D] this product?: ').lower()
                                     if action == 'm':
                                         T = True
@@ -342,6 +341,8 @@ class Brands(Base):
     brand_id = Column(Integer, primary_key = True)
     brand_name = Column('Brand Name',String)
 
+    brands_product = relationship("Product", back_populates="brand")
+
     def __repr__(self):
         return f'''Brand Name: {self.brand_name}'''
 
@@ -354,8 +355,10 @@ class Product(Base):
     product_quantity = Column('Product Quantity', Integer)
     product_price = Column('Product Price',Integer)
     date_updated = Column('Last Updated',Date)
-    brand_name = Column('Brand', String) # Remove this since I must have a connection between the two tables
     brand_id = Column(Integer, ForeignKey("brands.brand_id"))
+
+    brand = relationship("Brands", back_populates="brands_product")
+
 
     def __repr__(self):
         return f'''Product Name: {self.product_name}\r
@@ -370,8 +373,11 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     app()
 
-    # Remove the brand_name column (take a look to the documentation again)
 
+
+    # Use the relationship in a proper way
+
+    
 
 
 
