@@ -31,8 +31,14 @@ def add_brand_csv():
 
 
 
+def unclean_price(cents):
+    '''Take a price given in cents of a dollar and returns a price in this format --> $4.44'''
+    dollars = cents/100
+    fdollars = '$'+str(dollars)
+    return fdollars
 
-# Store the data $4.44 and date /// when creating a backup
+def unclean_date():
+    pass
 
 
 
@@ -288,7 +294,7 @@ def app():
                         data = []
                         for p in session.query(Product):
                             data.append({'Name':p.product_name,
-                                         'Price':p.product_price,
+                                         'Price':unclean_price(p.product_price),
                                          'Quantity':p.product_quantity,
                                          'Last Update':p.date_updated,
                                          'Brand':p.brand_name})
@@ -348,4 +354,6 @@ class Product(Base):
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
-    app()
+    #app()
+
+
