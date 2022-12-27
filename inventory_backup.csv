@@ -1,28 +1,28 @@
 Name,Price,Quantity,Last Update,Brand
-Bagel - Whole White Sesame,430,97,2018-11-01,Einstein's
-Sauce - Caesar Dressing,805,81,2018-12-28,Kraft
-Shiratamako - Rice Flour,799,71,2018-03-07,Bob's Red Mill
-Tart - Raisin And Pecan,106,86,2019-01-18,Delish
-Radish,247,22,2018-11-06,Kroger
-Juice - V8 Splash,125,67,2018-01-10,V8
-Red Currants,677,49,2018-10-01,Kroger
-Soup - Base Broth Beef,544,62,2019-03-09,Campbell's
-Tomatoes Tear Drop Yellow,64,73,2019-02-09,Kroger
-Mussels - Cultivated,934,24,2018-07-31,Kroger
-"Bread - Crumbs, Bulk",449,88,2019-01-12,Kikkoman
-"Beans - Long, Chinese",473,47,2018-09-22,Del Monte
-"Beans - Navy, Dry",459,44,2018-01-20,Del Monte
-Juice - V8 Splash,114,67,2018-01-13,V8
-"Basil - Dry, Rubbed",869,21,2018-02-04,Kroger
-Apple - Granny Smith,505,72,2018-01-12,Kroger
-"Lid - High Heat, Super Clear",123,5,2018-02-09,Farberware
-Oranges - Navel,478,46,2018-06-06,Kroger
-Berry Brulee,759,50,2018-08-25,Kroger
-Lobster - Canned Premium,761,57,2018-04-15,Kroger
-Sauce - Caesar Dressing,825,16,2019-04-10,Kraft
-Ham - Procutinni,570,8,2019-01-09,Kroger
-Veal - Ground,767,5,2018-12-19,Kroger
-Oil - Cooking Spray,420,6,2018-06-11,Pam
-"Extract - Vanilla,artificial",291,20,2018-06-08,McCormick
-"Mushroom - Porcini, Dry",814,71,2018-07-26,Kroger
-Wine - Cabernet Sauvignon,741,54,2018-03-10,Chateau Bonnet
+Bagel - Whole White Sesame,$4.3,97,11/01/2018,Einstein's
+Sauce - Caesar Dressing,$8.05,81,12/28/2018,Kraft
+Shiratamako - Rice Flour,$7.99,71,03/07/2018,Bob's Red Mill
+Tart - Raisin And Pecan,$1.06,86,01/18/2019,Delish
+Radish,$2.47,22,11/06/2018,Kroger
+Juice - V8 Splash,$1.25,67,01/10/2018,V8
+Red Currants,$6.77,49,10/01/2018,Kroger
+Soup - Base Broth Beef,$5.44,62,03/09/2019,Campbell's
+Tomatoes Tear Drop Yellow,$0.64,73,02/09/2019,Kroger
+Mussels - Cultivated,$9.34,24,07/31/2018,Kroger
+"Bread - Crumbs, Bulk",$4.49,88,01/12/2019,Kikkoman
+"Beans - Long, Chinese",$4.73,47,09/22/2018,Del Monte
+"Beans - Navy, Dry",$4.59,44,01/20/2018,Del Monte
+Juice - V8 Splash,$1.14,67,01/13/2018,V8
+"Basil - Dry, Rubbed",$8.69,21,02/04/2018,Kroger
+Apple - Granny Smith,$5.05,72,01/12/2018,Kroger
+"Lid - High Heat, Super Clear",$1.23,5,02/09/2018,Farberware
+Oranges - Navel,$4.78,46,06/06/2018,Kroger
+Berry Brulee,$7.59,50,08/25/2018,Kroger
+Lobster - Canned Premium,$7.61,57,04/15/2018,Kroger
+Sauce - Caesar Dressing,$8.25,16,04/10/2019,Kraft
+Ham - Procutinni,$5.7,8,01/09/2019,Kroger
+Veal - Ground,$7.67,5,12/19/2018,Kroger
+Oil - Cooking Spray,$4.2,6,06/11/2018,Pam
+"Extract - Vanilla,artificial",$2.91,20,06/08/2018,McCormick
+"Mushroom - Porcini, Dry",$8.14,71,07/26/2018,Kroger
+Wine - Cabernet Sauvignon,$7.41,54,03/10/2018,Chateau Bonnet
