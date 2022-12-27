@@ -90,9 +90,19 @@ def add_invent_csv():
             for p1 in session.query(Product):
                 if p0.product_name == p1.product_name:
                     if p0.date_updated > p1.date_updated:
-                        session.delete(p1)
-                    elif p0.date_updated < p1.date_updated:
+                        p1.product_name = p0.product_name
+                        p1.product_quantity = p0.product_quantity
+                        p1.product_price = p0.product_price
+                        p1.date_updated = p0.date_updated
+                        p1.brand_id = p0.brand_id
                         session.delete(p0)
+                    elif p0.date_updated < p1.date_updated:
+                        p0.product_name = p1.product_name
+                        p0.product_quantity = p1.product_quantity
+                        p0.product_price = p1.product_price
+                        p0.date_updated = p1.date_updated
+                        p0.brand_id = p1.brand_id
+                        session.delete(p1)
                         break
                     else:
                         continue
@@ -211,6 +221,8 @@ def app():
                                                 if p.brand_name == brand_name:
                                                     brand_id = p.brand_id
                                                     break
+                                                else:
+                                                    continue
                                         else:
                                             new_brand = Brands(brand_name=brand_name)
                                             session.add(new_brand)
@@ -392,6 +404,11 @@ class Product(Base):
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     app()
+
+
+
+
+
 
 
 
