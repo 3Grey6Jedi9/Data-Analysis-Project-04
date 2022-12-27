@@ -86,6 +86,20 @@ def add_invent_csv():
                 new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_name= brand_name, brand_id=brand_id)
                 session.add(new_product)
             session.commit()
+        # This will guarantee that there are not duplicates
+        for p0 in session.query(Product):
+            for p1 in session.query(Product):
+                if p0.product_name == p1.product_name:
+                    if p0.date_updated > p1.date_updated:
+                        session.delete(p1)
+                    elif p0.date_updated < p1.date_updated:
+                        session.delete(p0)
+                        break
+                    else:
+                        continue
+                else:
+                    continue
+        session.commit()
 
 
 
@@ -358,7 +372,9 @@ if __name__ == '__main__':
 
     # Remove the brand_name column (take a look to the documentation again)
 
-    # When the inventory csv is imported verify there are not duplicates
+
+
+
 
 
 
