@@ -289,24 +289,24 @@ def app():
                     most_valuable()
                 elif choice == 'b':
                     with open('inventory_backup.csv', 'w') as csvfile:
-                        fieldnames = ['Name', 'Price','Quantity','Last Update', 'Brand']
+                        fieldnames = ['product_name', 'product_price','product_quantity','date_updated', 'brand_name']
                         productwriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
                         productwriter.writeheader()
                         data = []
                         for p in session.query(Product):
-                            data.append({'Name':p.product_name,
-                                         'Price':unclean_price(p.product_price),
-                                         'Quantity':p.product_quantity,
-                                         'Last Update':unclean_date(p.date_updated),
-                                         'Brand':p.brand_name})
+                            data.append({'product_name':p.product_name,
+                                         'product_price':unclean_price(p.product_price),
+                                         'product_quantity':p.product_quantity,
+                                         'date_updated':unclean_date(p.date_updated),
+                                         'brand_name':p.brand_name})
                         productwriter.writerows(data)
                     with open('brands_backup.csv', 'w') as csvfile:
-                        fieldnames = ['Brand Name']
+                        fieldnames = ['brand_name']
                         productwriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
                         productwriter.writeheader()
                         data = []
                         for p in session.query(Brands):
-                            data.append({'Brand Name':p.brand_name})
+                            data.append({'brand_name':p.brand_name})
                         productwriter.writerows(data)
                 elif choice == 'q':
                     sys.exit()
@@ -360,7 +360,9 @@ if __name__ == '__main__':
 
     # When the inventory csv is imported verify there are not duplicates
 
-    # The backups must be identical to the originals
+
+
+
 
 
 
