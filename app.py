@@ -37,8 +37,9 @@ def unclean_price(cents):
     fdollars = '$'+str(dollars)
     return fdollars
 
-def unclean_date():
-    pass
+def unclean_date(date):
+    fdate = date.strftime("%m/%d/%Y")
+    return fdate
 
 
 
@@ -296,7 +297,7 @@ def app():
                             data.append({'Name':p.product_name,
                                          'Price':unclean_price(p.product_price),
                                          'Quantity':p.product_quantity,
-                                         'Last Update':p.date_updated,
+                                         'Last Update':unclean_date(p.date_updated),
                                          'Brand':p.brand_name})
                         productwriter.writerows(data)
                     with open('brands_backup.csv', 'w') as csvfile:
@@ -353,6 +354,7 @@ class Product(Base):
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
-    #app()
+    app()
+
 
 
