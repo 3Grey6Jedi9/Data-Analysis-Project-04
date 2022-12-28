@@ -124,7 +124,7 @@ def most_valuable():
             continue
     s = sum(value)/100
     print(f'''\nThe most valuable item in the inventory is {product_names[idx]} with a total value of ${value[idx]/100}
-    \rWhich means that this item represents a {((value[idx]/100)/s)*100}% of the total value of the assets of the inventory''')
+    \rWhich means that this item represents a {round(((value[idx]/100)/s)*100,2)}% of the total value of the assets of the inventory''')
 
 
 
@@ -410,6 +410,9 @@ class Product(Base):
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     app()
+
+
+
 
 
 
