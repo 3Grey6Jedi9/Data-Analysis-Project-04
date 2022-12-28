@@ -412,14 +412,6 @@ if __name__ == '__main__':
     app()
 
 
-    #for p in session.query(Product):
-        #if p.brand_id == 5:
-            #p.brand_id = 1
-            #print(p.brand)
-            #break
-        #else:
-            #continue
-
 
 
 
