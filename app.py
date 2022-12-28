@@ -66,49 +66,40 @@ def add_invent_csv():
     with open('inventory.csv') as csvfile:
         data = csv.reader(csvfile)
         i = 0
+        datalist = []
         for row in data:
             if i == 0:
                 i += 1
                 continue
             else:
-                name = row[0]
-                quantity = int(row[2])
-                price = clean_price(row[1])
-                date = clean_date(row[3])
-                brand_name = row[4]
-                for p in session.query(Brands):
-                    if p.brand_name == brand_name:
-                        brand_id = p.brand_id
+                datalist.append(row)
+        for row in datalist:
+            for rw in datalist:
+                if row[0] == rw [0]:
+                    if clean_date(row[3]) > clean_date(rw[3]):
+                        datalist.remove(rw)
+                    elif clean_date(row[3]) < clean_date(rw[3]):
+                        datalist.remove(row)
                         break
-                    else:
-                        continue
-                new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date, brand_id=brand_id)
-                session.add(new_product)
-            session.commit()
-        # This will guarantee that there are not duplicates
-        for p0 in session.query(Product):
-            for p1 in session.query(Product):
-                if p0.product_name == p1.product_name:
-                    if p0.date_updated > p1.date_updated:
-                        p1.product_name = p0.product_name
-                        p1.product_quantity = p0.product_quantity
-                        p1.product_price = p0.product_price
-                        p1.date_updated = p0.date_updated
-                        p1.brand_id = p0.brand_id
-                        session.delete(p0)
-                    elif p0.date_updated < p1.date_updated:
-                        p0.product_name = p1.product_name
-                        p0.product_quantity = p1.product_quantity
-                        p0.product_price = p1.product_price
-                        p0.date_updated = p1.date_updated
-                        p0.brand_id = p1.brand_id
-                        session.delete(p1)
-                        break
-                    else:
-                        continue
+        for row in datalist:
+            name = row[0]
+            quantity = int(row[2])
+            price = clean_price(row[1])
+            date = clean_date(row[3])
+            brand_name = row[4]
+            for p in session.query(Brands):
+                if p.brand_name == brand_name:
+                    brand_id = p.brand_id
+                    break
                 else:
                     continue
+            new_product = Product(product_name=name, product_quantity=quantity, product_price=price, date_updated=date,
+                                  brand_id=brand_id)
+            session.add(new_product)
         session.commit()
+
+
+
 
 
 
@@ -409,11 +400,6 @@ class Product(Base):
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     app()
-
-
-
-
-
 
 
 
