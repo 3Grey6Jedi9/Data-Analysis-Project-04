@@ -228,10 +228,15 @@ def app():
                                             session.add(new_brand)
                                             session.commit()
                                             brand_id = new_brand.brand_id
-                                        product.product_quantity = quantity
-                                        product.product_price = price
-                                        product.date_updated = date
-                                        product.brand_id = brand_id
+                                        for p in session.query(Product):
+                                            if p.product_id == id:
+                                                p.product_quantity = quantity
+                                                p.product_price = price
+                                                p.date_updated = date
+                                                p.brand_id = brand_id
+                                                break
+                                            else:
+                                                continue
                                     elif action == 'd':
                                         sure = input('Are you sure you want to delete this product (enter "yes" to delete or press any other key to continue)? ').lower()
                                         if sure == 'yes':
@@ -404,6 +409,7 @@ class Product(Base):
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     app()
+
 
 
 
